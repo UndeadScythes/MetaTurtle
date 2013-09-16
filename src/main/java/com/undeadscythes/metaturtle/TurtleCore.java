@@ -1,8 +1,8 @@
-package com.undeadscythes.udsmeta;
+package com.undeadscythes.metaturtle;
 
-import com.undeadscythes.udsmeta.exceptions.NoMetadataSetException;
-import com.undeadscythes.udsmeta.exceptions.NotMetadatableTypeException;
-import com.undeadscythes.udsyaml.*;
+import com.undeadscythes.jaml.*;
+import com.undeadscythes.jaml.exceptions.*;
+import com.undeadscythes.metaturtle.exceptions.*;
 import java.io.*;
 import java.util.*;
 import java.util.logging.*;
@@ -10,8 +10,8 @@ import java.util.logging.*;
 /**
  * @author UndeadScythes
  */
-public class MetaCore {
-    private static YamlConfig yaml;
+public class TurtleCore {
+    private static YamlTree yaml;
     private static HashMap<String, MetadataKey> keys;
     private static HashMap<Class<? extends Object>, MetadatableType> types;
     private static HashMap<MetadatableType, HashMap<String, HashMap<MetadataKey, Object>>> store;
@@ -44,9 +44,9 @@ public class MetaCore {
             MetadatableType type = getType(obj.getClass());
             return store.get(type).get(type.getID(obj)).get(key);
         } catch (NotMetadatableTypeException ex) {
-            Logger.getLogger(MetaCore.class.getName()).severe(ex.getMessage());
+            Logger.getLogger(TurtleCore.class.getName()).severe(ex.getMessage());
             for(StackTraceElement trace : ex.getStackTrace()) {
-                Logger.getLogger(MetaCore.class.getName()).severe(trace.toString());
+                Logger.getLogger(TurtleCore.class.getName()).severe(trace.toString());
             }
             throw new NoMetadataSetException(key);
         }
@@ -66,9 +66,9 @@ public class MetaCore {
             if(!typeStore.containsKey(type.getID(meta)) || !typeStore.get(type.getID(meta)).containsKey(key)) return false;
             return true;
         } catch (NotMetadatableTypeException ex) {
-            Logger.getLogger(MetaCore.class.getName()).severe(ex.getMessage());
+            Logger.getLogger(TurtleCore.class.getName()).severe(ex.getMessage());
             for(StackTraceElement trace : ex.getStackTrace()) {
-                Logger.getLogger(MetaCore.class.getName()).severe(trace.toString());
+                Logger.getLogger(TurtleCore.class.getName()).severe(trace.toString());
             }
             return false;
         }
@@ -98,7 +98,7 @@ public class MetaCore {
     }
 
     public static void loadMeta(final String path, final MetadatableType[] typeList, final MetadataKey[] keyList) throws IOException {
-        yaml = new YamlConfig(path);
+        yaml = new YamlTree(path);
         yaml.load();
         loadTypes(typeList);
         loadKeys(keyList);
@@ -113,7 +113,7 @@ public class MetaCore {
             for(Map.Entry<String, HashMap<MetadataKey, Object>> entry : store.get(type).entrySet()) {
                 for(Map.Entry<MetadataKey, Object> metadata : entry.getValue().entrySet()) {
                     if(!metadata.getKey().isPersistent()) continue;
-                    yaml.set(entry.getKey().toString().replace("@", ".").concat("." + metadata.getKey().getString()), metadata.getValue());
+                    yaml.set(type.toString() + "." + entry.getKey().concat("." + metadata.getKey().getString()), metadata.getValue());
                 }
             }
         }
@@ -121,24 +121,18 @@ public class MetaCore {
     }
 
     public static boolean isEmpty() {
-        for(MetadatableType type : types.values()) {
-            if(!store.get(type).isEmpty()) {
-                for(String meta : store.get(type).keySet()) {
-                    if(!store.get(type).get(meta).isEmpty()) return false;
-                }
-            }
-        }
-        return true;
+        return yaml.isEmpty();
     }
 
     public static void attach(final Object obj) throws IOException, NotMetadatableTypeException {
-        Object meta = getType(obj.getClass()).getObjectType().cast(obj);
+        MetadatableType type = getType(obj.getClass());
+        Object meta = type.getObjectType().cast(obj);
         try {
-            for(Map.Entry<String, Object> entry : yaml.getValues(meta.toString().replace("@", ".")).entrySet()) {
+            for(Map.Entry<String, Object> entry : yaml.getValues(type.toString() + "." + type.getID(obj)).entrySet()) {
                 set(meta, keys.get(entry.getKey()), entry.getValue());
             }
         } catch (NoSuchYamlPathException ex) {}
     }
 
-    private MetaCore() {}
+    private TurtleCore() {}
 }

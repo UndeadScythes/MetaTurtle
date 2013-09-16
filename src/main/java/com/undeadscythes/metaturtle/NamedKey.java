@@ -1,4 +1,4 @@
-package com.undeadscythes.udsmeta;
+package com.undeadscythes.metaturtle;
 
 /**
  * @author UndeadScythes

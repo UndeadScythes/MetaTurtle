@@ -1,4 +1,4 @@
-package com.undeadscythes.udsmeta.exceptions;
+package com.undeadscythes.metaturtle.exceptions;
 
 /**
  * @author UndeadScythes

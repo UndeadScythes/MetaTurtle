@@ -1,6 +1,6 @@
-package com.undeadscythes.udsmeta.exceptions;
+package com.undeadscythes.metaturtle.exceptions;
 
-import com.undeadscythes.udsmeta.MetadataKey;
+import com.undeadscythes.metaturtle.MetadataKey;
 
 /**
  * @author UndeadScythes
