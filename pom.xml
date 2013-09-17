@@ -1,46 +1,37 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.undeadscythes</groupId>
   <artifactId>MetaTurtle</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
+  <name>MetaTurtle</name>
+  <description>As the saying goes - 'Its turtles all the way down'. This time
+the turtles refer to data. Data with data. Data with data with data... This
+project provides a recursive metadata structure that can be tailored to suit
+many situations.</description>
+  <url>https://github.com/UndeadScythes/MetaTurtle</url>
+  <licenses>
+    <license>
+      <name>Creative Commons BY-NC-SA 2.0 UK</name>
+      <url>http://creativecommons.org/licenses/by-nc-sa/2.0/uk/legalcode</url>
+      <distribution>repo</distribution>
+      <comments>Attribution - Non-Commercial - Share-Alike</comments>
+    </license>
+  </licenses>
+  <prerequisites>
+    <maven>2.2.1</maven>
+  </prerequisites>
   <packaging>jar</packaging>
   <properties>
     <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
     <dev.build.timestamp>${maven.build.timestamp}</dev.build.timestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  <dependencies>
-    <dependency>
-      <groupId>com.undeadscythes</groupId>
-      <artifactId>Jaml</artifactId>
-      <version>0.1.1</version>
-      <type>jar</type>
-    </dependency>
-  </dependencies>
 
   <build>
-    <resources>
-      <resource>
-	<directory>src/main/resources</directory>
-	<filtering>true</filtering>
-      </resource>
-    </resources>
     <plugins>
-      <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-clean-plugin</artifactId>
-	<version>2.5</version>
-	<executions>
-	  <execution>
-	    <phase>initialize</phase>
-	    <goals>
-	      <goal>clean</goal>
-	    </goals>
-	  </execution>
-	</executions>
-      </plugin>
       <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
@@ -77,38 +68,19 @@
 	</executions>
       </plugin>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-dependency-plugin</artifactId>
-	<version>2.8</version>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>versions-maven-plugin</artifactId>
+	<version>2.1</version>
 	<executions>
 	  <execution>
-	    <phase>process-sources</phase>
+	    <phase>install</phase>
 	    <goals>
-	      <goal>purge-local-repository</goal>
+	      <goal>display-plugin-updates</goal>
+	      <goal>display-dependency-updates</goal>
 	    </goals>
-	    <configuration>
-	      <excludes>
-		<exclude>com.undeadscythes:MetaTurtle</exclude>
-	      </excludes>
-	    </configuration>
 	  </execution>
 	</executions>
       </plugin>
     </plugins>
   </build>
-
-  <name>MetaTurtle</name>
-  <description>As the saying goes - 'Its turtles all the way down'. This time
-the turtles refer to data. Data with data. Data with data with data... This
-project provides a recursive metadata structure that can be tailored to suit
-many situations.</description>
-  <url>https://github.com/UndeadScythes/MetaTurtle</url>
-  <licenses>
-    <license>
-      <name>Creative Commons BY-NC-SA 2.0 UK</name>
-      <url>http://creativecommons.org/licenses/by-nc-sa/2.0/uk/legalcode</url>
-      <distribution>repo</distribution>
-      <comments>Attribution - Non-Commercial - Share-Alike</comments>
-    </license>
-  </licenses>
 </project>
