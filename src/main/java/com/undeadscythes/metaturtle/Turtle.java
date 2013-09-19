@@ -12,11 +12,15 @@ public class Turtle implements MetaType {
      */
     public static final Turtle ROOT;
 
+    /**
+     * For use when no other {@link MetaType} is given.
+     */
+    public static final Turtle DEFAULT;
+
     static {
         ROOT = new Turtle();
+        DEFAULT = new Turtle();
     }
 
-    private Turtle() {
-        // Nihil Mutatar
-    }
+    private Turtle() {}
 }
