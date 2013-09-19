@@ -1,49 +1,49 @@
 package com.undeadscythes.metaturtle;
 
+import com.undeadscythes.metaturtle.exception.*;
 import java.util.*;
 
 /**
- * An entity that can accept metadata.
- *
- * @param <T> Type of meta data contained
+ * An entity that can accept {@link Metadata}.
  *
  * @author UndeadScythes
  */
-public class Metadatable<T extends Object> extends ArrayList<Metadata<T>>{
+public class Metadatable extends ArrayList<Metadata>{
     private static final long serialVersionUID = 1L;
 
     /**
-     * Get a list of metadata contained in the given path. Paths are strings of
-     * the form "top.sublevel.tail", where each element is the
-     * {@link Metadata#metaID} of the desired element.
-     *
-     * @param path
-     * @return List of matching {@link Metadata}
+     * Constructor to set the initial capacity of the super {@link ArrayList}.
      */
-    public List<Metadata<T>> getData(final String path) {
-        final List<Metadata<T>> matches = new ArrayList<Metadata<T>>(0);
-        final String[] pathSplit = path.split(".");
-        final String head = pathSplit[0];
-        for (Metadata<T> data : getByID(head)) {
-            if (pathSplit.length > 1) {
-                matches.addAll(data.getData(path.replace(head + ".", "")));
-            }
-        }
-        return matches;
+    public Metadatable(final int size) {
+        super(size);
     }
 
     /**
-     * Select this {@link Metadatable}s {@link Metadata} elements with a
-     * matching {@link Metadata#metaID}.
+     * Get a list of {@link Metadatable}s contained in the given path.
      *
-     * @param metaID
-     * @return List of matching {@link Metadata}
+     * @param path A {@link String} of the form "a.b.c", where each element is
+     * the {@link Metadata#metaID metaID} of the desired sub-meta.
      */
-    public List<Metadata<T>> getByID(final String metaID) {
-        final List<Metadata<T>> matches = new ArrayList<Metadata<T>>(0);
-        for (Metadata<T> data : this) {
-            if (data.equals(metaID)) matches.add(data);
+    public List<Metadatable> getData(final String path) throws NoMetadataSetException {
+        final List<Metadatable> matches = new ArrayList<Metadatable>(0);
+        if (!path.contains(".")) return getByID(path);
+        final String[] pathSplit = path.split("\\.");
+        final String head = pathSplit[0];
+        for (Metadatable data : getByID(head)) {
+            try {
+                matches.addAll(data.getData(path.replace(head + ".", "")));
+            } catch (NoMetadataSetException ex) {}
         }
+        if (matches.isEmpty()) throw new NoMetadataSetException(path);
+        return matches;
+    }
+
+    private List<Metadatable> getByID(final String metaID) throws NoMetadataSetException {
+        final List<Metadatable> matches = new ArrayList<Metadatable>(0);
+        for (Metadata data : this) {
+            if (data.equals(metaID)) matches.add(data.getValue());
+        }
+        if (matches.isEmpty()) throw new NoMetadataSetException(metaID);
         return matches;
     }
 }
