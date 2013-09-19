@@ -6,11 +6,7 @@ package com.undeadscythes.metaturtle;
  * @author UndeadScythes
  */
 public class UID {
-    private static int nextUID;
-
-    static {
-        nextUID = 1;
-    }
+    private static int nextUID = 1;
 
     protected final String value;
 

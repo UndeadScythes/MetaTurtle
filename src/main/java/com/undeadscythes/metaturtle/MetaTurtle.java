@@ -10,11 +10,7 @@ import java.util.*;
  * @author UndeadScythes
  */
 public abstract class MetaTurtle extends UniqueMeta {
-    private final Map<MetaType, Map<UID, UniqueMeta>> data;
-
-    {
-        data = new HashMap<MetaType, Map<UID, UniqueMeta>>(0);
-    }
+    private final Map<MetaType, Map<UID, UniqueMeta>> data = new HashMap<MetaType, Map<UID, UniqueMeta>>(0);
 
     /**
      * Set this instance as a {@link Turtle#ROOT ROOT} with a specific

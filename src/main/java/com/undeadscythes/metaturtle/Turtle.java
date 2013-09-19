@@ -6,21 +6,16 @@ package com.undeadscythes.metaturtle;
  *
  * @author UndeadScythes
  */
-public class Turtle implements MetaType {
+public final class Turtle implements MetaType {
     /**
      * Root element to define a {@link MetaTurtle}.
      */
-    public static final Turtle ROOT;
+    public static final Turtle ROOT = new Turtle();
 
     /**
      * For use when no other {@link MetaType} is given.
      */
-    public static final Turtle DEFAULT;
-
-    static {
-        ROOT = new Turtle();
-        DEFAULT = new Turtle();
-    }
+    public static final Turtle DEFAULT = new Turtle();
 
     private Turtle() {}
 }
