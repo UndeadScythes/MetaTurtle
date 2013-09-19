@@ -9,15 +9,18 @@ import org.junit.*;
  * @author UndeadScythes
  */
 public class ExceptionTest {
+    private static final NoUniqueMetaException UNIQUE = new NoUniqueMetaException(new UID("test"));
+    private static final NoMetadataSetException METADATA = new NoMetadataSetException("test.fail");
+
     @Test(expected = NoUniqueMetaException.class)
     public void testNoUniqueMetaExceptionThrow() throws NoUniqueMetaException {
-        throw new NoUniqueMetaException(new UID("test"));
+        throw UNIQUE;
     }
 
     @Test
     public void testNoUniqueMetaExceptionMessage() {
         try {
-            throw new NoUniqueMetaException(new UID("test"));
+            throw UNIQUE;
         } catch (NoUniqueMetaException ex) {
             assertTrue("getMessage()", ex.getMessage().endsWith("test."));
         }
@@ -25,13 +28,13 @@ public class ExceptionTest {
 
     @Test(expected = NoMetadataSetException.class)
     public void testNoMetadataSetExceptionThrow() throws NoMetadataSetException {
-        throw new NoMetadataSetException("test.fail");
+        throw METADATA;
     }
 
     @Test
     public void testNoMetadataSetExceptionMessage() {
         try {
-            throw new NoMetadataSetException("test.fail");
+            throw METADATA;
         } catch (NoMetadataSetException ex) {
             assertTrue("getMessage()", ex.getMessage().endsWith("test.fail'."));
         }
