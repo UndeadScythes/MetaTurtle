@@ -1,28 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.undeadscythes</groupId>
   <artifactId>MetaTurtle</artifactId>
-  <version>0.1.1</version>
-  <name>MetaTurtle</name>
-  <description>As the saying goes - 'Its turtles all the way down'. This time
-the turtles refer to data. Data with data. Data with data with data... This
-project provides a recursive metadata structure that can be tailored to suit
-many situations.</description>
-  <url>https://github.com/UndeadScythes/MetaTurtle</url>
-  <licenses>
-    <license>
-      <name>Creative Commons BY-NC-SA 2.0 UK</name>
-      <url>http://creativecommons.org/licenses/by-nc-sa/2.0/uk/legalcode</url>
-      <distribution>repo</distribution>
-      <comments>Attribution - Non-Commercial - Share-Alike</comments>
-    </license>
-  </licenses>
-  <prerequisites>
-    <maven>2.2.1</maven>
-  </prerequisites>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
   <properties>
     <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
@@ -32,6 +16,35 @@ many situations.</description>
 
   <build>
     <plugins>
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-javadoc-plugin</artifactId>
+	<version>2.9.1</version>
+	<executions>
+	  <execution>
+	    <phase>generate-sources</phase>
+	    <goals>
+	      <goal>javadoc</goal>
+	    </goals>
+	    <configuration>
+	      <quiet>true</quiet>
+	    </configuration>
+	  </execution>
+	</executions>
+      </plugin>
+      <plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>versions-maven-plugin</artifactId>
+	<version>2.1</version>
+	<executions>
+	  <execution>
+	    <phase>process-sources</phase>
+	    <goals>
+	      <goal>display-dependency-updates</goal>
+	    </goals>
+	  </execution>
+	</executions>
+      </plugin>
       <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
@@ -54,33 +67,51 @@ many situations.</description>
           </execution>
         </executions>
       </plugin>
-      <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-javadoc-plugin</artifactId>
-	<version>2.9.1</version>
-	<executions>
-	  <execution>
-	    <phase>generate-sources</phase>
-	    <goals>
-	      <goal>javadoc</goal>
-	    </goals>
-	  </execution>
-	</executions>
-      </plugin>
-      <plugin>
-	<groupId>org.codehaus.mojo</groupId>
-	<artifactId>versions-maven-plugin</artifactId>
-	<version>2.1</version>
-	<executions>
-	  <execution>
-	    <phase>install</phase>
-	    <goals>
-	      <goal>display-plugin-updates</goal>
-	      <goal>display-dependency-updates</goal>
-	    </goals>
-	  </execution>
-	</executions>
-      </plugin>
     </plugins>
   </build>
+
+  <name>MetaTurtle</name>
+  <description>As the saying goes - 'Its turtles all the way down'. This time
+the turtles refer to data. Data with data. Data with data with data... This
+project provides a recursive metadata structure that can be tailored to suit
+many situations.</description>
+  <url>https://github.com/UndeadScythes/MetaTurtle</url>
+  <inceptionYear>2013</inceptionYear>
+  <licenses>
+    <license>
+      <name>Creative Commons BY-NC-SA 2.0 UK</name>
+      <url>http://creativecommons.org/licenses/by-nc-sa/2.0/uk/legalcode</url>
+      <distribution>repo</distribution>
+      <comments>Attribution - Non-Commercial - Share-Alike</comments>
+    </license>
+  </licenses>
+  <organization>
+    <name>UndeadScythes' Empire</name>
+    <url>http://undeadscythes.com</url>
+  </organization>
+  <developers>
+    <developer>
+      <id>UndeadScythes</id>
+      <name>Dave</name>
+      <email>daveyognaut2@gmail.com</email>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
+      <timezone>0</timezone>
+    </developer>
+  </developers>
+
+  <prerequisites>
+    <maven>2.2.1</maven>
+  </prerequisites>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
 </project>
