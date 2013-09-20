@@ -5,6 +5,7 @@ import com.undeadscythes.metaturtle.*;
 /**
  * @author UndeadScythes
  */
+@SuppressWarnings("serial")
 public class Image extends Metadata {
     public Image() {
         super("image", "");

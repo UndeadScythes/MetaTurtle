@@ -5,6 +5,7 @@ import com.undeadscythes.metaturtle.*;
 /**
  * @author UndeadScythes
  */
+@SuppressWarnings("serial")
 public class Animal extends UniqueMeta {
     public Animal() {
         super(AnimalType.BIRD, new UID("7"));
