@@ -38,7 +38,7 @@ public class MetadatableTest {
     @Test
     public void testMetadatableGetData() {
         try {
-            assertEquals("getData()", "JPEG", ((Data)new Animal().getData("image.format").get(0)).getContent());
+            assertEquals("getData()", "JPEG", (new Animal().getData("image.format").get(0).getValue()));
         } catch (NoMetadataSetException ex) {
             fail("getData()");
         }
@@ -47,7 +47,7 @@ public class MetadatableTest {
     @Test
     public void testMetadatableGetByID() {
         try {
-            assertEquals("getByID()", "Fred", ((Data)new Animal().getData("name").get(0)).getContent());
+            assertEquals("getByID()", "Fred", (new Animal().getData("name").get(0).getValue()));
         } catch (NoMetadataSetException ex) {
             fail("getByID()");
         }

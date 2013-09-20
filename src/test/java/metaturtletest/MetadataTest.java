@@ -15,12 +15,6 @@ public class MetadataTest {
 
     @Test
     public void testMetadataSetContent() {
-        Data data = new Data("test");
-        assertEquals("setContent()", data, new Metadata("test", data).setValue(""));
-    }
-
-    @Test
-    public void testDataSetContent() {
-        assertEquals("setContent()", "test", new Data("test").setContent("other"));
+        assertEquals("setContent()", "data", new Metadata<String>("test", "data").setValue(""));
     }
 }

@@ -5,11 +5,11 @@ import com.undeadscythes.metaturtle.*;
 /**
  * @author UndeadScythes
  */
-public class Image extends Metadatable {
+public class Image extends Metadata<String> {
     public Image() {
-        super(3);
-        add(new Metadata("format", "JPEG"));
-        add(new Metadata("dimensions", "200x300"));
-        add(new Metadata("filename", "bird.jpg"));
+        super("image", "");
+        add(new Metadata<String>("format", "JPEG"));
+        add(new Metadata<String>("dimensions", "200x300"));
+        add(new Metadata<String>("filename", "bird.jpg"));
     }
 }

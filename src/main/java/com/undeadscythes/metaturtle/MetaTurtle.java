@@ -7,10 +7,11 @@ import java.util.*;
  * A base class that forms a container for various {@link MetaType}s of
  * {@link UniqueMeta}s. This class is also itself a {@link UniqueMeta}.
  *
+ * @param <T> Type of data this {@link MetaTurtle} will hold.
  * @author UndeadScythes
  */
-public abstract class MetaTurtle extends UniqueMeta {
-    private final Map<MetaType, Map<UID, UniqueMeta>> data = new HashMap<MetaType, Map<UID, UniqueMeta>>(0);
+public abstract class MetaTurtle<T extends Object> extends UniqueMeta<T> {
+    private final Map<MetaType, Map<UID, UniqueMeta<T>>> data = new HashMap<MetaType, Map<UID, UniqueMeta<T>>>(0);
 
     /**
      * Set this instance as a {@link Turtle#ROOT ROOT} with a specific
@@ -33,9 +34,9 @@ public abstract class MetaTurtle extends UniqueMeta {
     /**
      * Add a new {@link UniqueMeta} to this container.
      */
-    public void addUniqueMeta(final UniqueMeta meta) {
+    public void addUniqueMeta(final UniqueMeta<T> meta) {
         if (!data.containsKey(meta.getType())) {
-            data.put(meta.getType(), new HashMap<UID, UniqueMeta>(1));
+            data.put(meta.getType(), new HashMap<UID, UniqueMeta<T>>(1));
         }
         data.get(meta.getType()).put(meta.getUID(), meta);
     }
@@ -46,7 +47,7 @@ public abstract class MetaTurtle extends UniqueMeta {
      *
      * @see #getUniqueMeta(MetaType, UID) getUniqueMeta(MetaType, UID)
      */
-    public UniqueMeta getUniqueMeta(final MetaType type, final String uid) throws NoUniqueMetaException {
+    public UniqueMeta<T> getUniqueMeta(final MetaType type, final String uid) throws NoUniqueMetaException {
         return getUniqueMeta(type, new UID(uid));
     }
 
@@ -54,8 +55,8 @@ public abstract class MetaTurtle extends UniqueMeta {
      * Get a specific {@link UniqueMeta} from this {@link MetaTurtle} by
      * {@link MetaType} and {@link UID}.
      */
-    public UniqueMeta getUniqueMeta(final MetaType type, final UID uid) throws NoUniqueMetaException {
-        final UniqueMeta match = data.get(type).get(uid);
+    public UniqueMeta<T> getUniqueMeta(final MetaType type, final UID uid) throws NoUniqueMetaException {
+        final UniqueMeta<T> match = data.get(type).get(uid);
         if (match == null) throw new NoUniqueMetaException(uid);
         return match;
     }
@@ -63,9 +64,9 @@ public abstract class MetaTurtle extends UniqueMeta {
     /**
      * Get a full set of {@link UniqueMeta}s of a particular {@link MetaType}.
      */
-    public Collection<UniqueMeta> getUniqueMeta(final MetaType type) {
-        final Collection<UniqueMeta> list = data.get(type).values();
-        if (list == null) return new ArrayList<UniqueMeta>(0);
+    public Collection<UniqueMeta<T>> getUniqueMeta(final MetaType type) {
+        final Collection<UniqueMeta<T>> list = data.get(type).values();
+        if (list == null) return new ArrayList<UniqueMeta<T>>(0);
         return list;
     }
 }

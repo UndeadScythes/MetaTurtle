@@ -6,9 +6,10 @@ import java.util.*;
 /**
  * An entity that can accept {@link Metadata}.
  *
+ * @param <T> Type of data this {@link Metadatable} will hold.
  * @author UndeadScythes
  */
-public class Metadatable extends ArrayList<Metadata>{
+public class Metadatable<T extends Object> extends ArrayList<Metadata<T>>{
     private static final long serialVersionUID = 1L;
 
     /**
@@ -22,14 +23,14 @@ public class Metadatable extends ArrayList<Metadata>{
      * Get a list of {@link Metadatable}s contained in the given path.
      *
      * @param path A {@link String} of the form "a.b.c", where each element is
-     * the {@link Metadata#metaID metaID} of the desired sub-meta.
+     * the {@link Metadata#property property} of the desired sub-meta.
      */
-    public List<Metadatable> getData(final String path) throws NoMetadataSetException {
-        final List<Metadatable> matches = new ArrayList<Metadatable>(0);
+    public List<Metadata<T>> getData(final String path) throws NoMetadataSetException {
+        final List<Metadata<T>> matches = new ArrayList<Metadata<T>>(0);
         if (!path.contains(".")) return getByID(path);
         final String[] pathSplit = path.split("\\.");
         final String head = pathSplit[0];
-        for (Metadatable data : getByID(head)) {
+        for (Metadata<T> data : getByID(head)) {
             try {
                 matches.addAll(data.getData(path.replace(head + ".", "")));
             } catch (NoMetadataSetException ex) {}
@@ -38,12 +39,21 @@ public class Metadatable extends ArrayList<Metadata>{
         return matches;
     }
 
-    private List<Metadatable> getByID(final String metaID) throws NoMetadataSetException {
-        final List<Metadatable> matches = new ArrayList<Metadatable>(0);
-        for (Metadata data : this) {
-            if (data.equals(metaID)) matches.add(data.getValue());
+    private List<Metadata<T>> getByID(final String property) throws NoMetadataSetException {
+        final List<Metadata<T>> matches = new ArrayList<Metadata<T>>(0);
+        for (Metadata<T> data : this) {
+            if (data.equals(property)) matches.add(data);
         }
-        if (matches.isEmpty()) throw new NoMetadataSetException(metaID);
+        if (matches.isEmpty()) throw new NoMetadataSetException(property);
         return matches;
+    }
+
+    /**
+     * Remove a {@link Metadata} with a matching property from this entity.
+     */
+    public void remove(final String property) {
+        for (Metadata<T> data : this) {
+            if (data.equals(property)) remove(data);
+        }
     }
 }
