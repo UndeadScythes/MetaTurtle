@@ -24,7 +24,7 @@ public class Metadatable extends ArrayList<Metadata>{
      * @param path A {@link String} of the form "a.b.c", where each element is
      * the {@link Metadata#property property} of the desired sub-meta.
      */
-    public List<Metadata> getData(final String path) throws NoMetadataSetException {
+    public List<Metadata> getData(final String path) {
         final List<Metadata> matches = new ArrayList<Metadata>(0);
         if (!path.contains(".")) return getByID(path);
         final String[] pathSplit = path.split("\\.");
