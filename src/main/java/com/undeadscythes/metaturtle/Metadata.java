@@ -4,20 +4,19 @@ package com.undeadscythes.metaturtle;
  * A single {@link Metadata} consists of a {@link Property} and some
  * {@link Metadatable} data.
  *
- * @param <T> Type of data this {@link Metadata} will hold.
  * @author UndeadScythes
  */
-public class Metadata<T extends Object> extends Metadatable<T> {
+public class Metadata extends Metadatable {
     private static final long serialVersionUID = 1L;
 
     private final Property property;
-    private T value;
+    private String value;
 
     /**
      * Create a new {@link Metadata} item with a given {@link Property}
      * and value.
      */
-    public Metadata(final Property property, final T value) {
+    public Metadata(final Property property, final String value) {
         super(0);
         this.property = property;
         this.value = value;
@@ -27,9 +26,9 @@ public class Metadata<T extends Object> extends Metadatable<T> {
      * Create a new {@link Metadata} item with a {@link Property} generated from
      * a given {@link String} and value.
      *
-     * @see #Metadata(Property, Object)  Metadata(Property, T)
+     * @see #Metadata(Property, String)  Metadata(Property, String)
      */
-    public Metadata(final String property, final T value) {
+    public Metadata(final String property, final String value) {
         this(new NamedProperty(property), value);
     }
 
@@ -37,7 +36,7 @@ public class Metadata<T extends Object> extends Metadatable<T> {
     /**
      * Get the value of this data entity.
      */
-    public T getValue() {
+    public String getValue() {
         return value;
     }
 
@@ -64,8 +63,8 @@ public class Metadata<T extends Object> extends Metadatable<T> {
      *
      * @return Old {@link #value value}
      */
-    public T setValue(final T value) {
-        final T oldValue = this.value;
+    public String setValue(final String value) {
+        final String oldValue = this.value;
         this.value = value;
         return oldValue;
     }

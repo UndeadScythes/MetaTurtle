@@ -5,10 +5,9 @@ package com.undeadscythes.metaturtle;
  * a {@link UID} and a {@link MetaType}. This class should be used for top level
  * hierarchical entities.
  *
- * @param <T> Type of data this {@link UniqueMeta} will hold.
  * @author UndeadScythes
  */
-public abstract class UniqueMeta<T extends Object> extends Metadatable<T> {
+public abstract class UniqueMeta extends Metadatable {
     private final UID uid;
     private final MetaType type;
 

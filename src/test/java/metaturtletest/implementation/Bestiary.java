@@ -5,7 +5,7 @@ import com.undeadscythes.metaturtle.*;
 /**
  * @author UndeadScythes
  */
-public class Bestiary extends MetaTurtle<String> {
+public class Bestiary extends MetaTurtle {
     public Bestiary() {
         addUniqueMeta(new Animal());
     }

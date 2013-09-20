@@ -6,10 +6,9 @@ import java.util.*;
 /**
  * An entity that can accept {@link Metadata}.
  *
- * @param <T> Type of data this {@link Metadatable} will hold.
  * @author UndeadScythes
  */
-public class Metadatable<T extends Object> extends ArrayList<Metadata<T>>{
+public class Metadatable extends ArrayList<Metadata>{
     private static final long serialVersionUID = 1L;
 
     /**
@@ -25,12 +24,12 @@ public class Metadatable<T extends Object> extends ArrayList<Metadata<T>>{
      * @param path A {@link String} of the form "a.b.c", where each element is
      * the {@link Metadata#property property} of the desired sub-meta.
      */
-    public List<Metadata<T>> getData(final String path) throws NoMetadataSetException {
-        final List<Metadata<T>> matches = new ArrayList<Metadata<T>>(0);
+    public List<Metadata> getData(final String path) throws NoMetadataSetException {
+        final List<Metadata> matches = new ArrayList<Metadata>(0);
         if (!path.contains(".")) return getByID(path);
         final String[] pathSplit = path.split("\\.");
         final String head = pathSplit[0];
-        for (Metadata<T> data : getByID(head)) {
+        for (Metadata data : getByID(head)) {
             try {
                 matches.addAll(data.getData(path.replace(head + ".", "")));
             } catch (NoMetadataSetException ex) {}
@@ -39,9 +38,9 @@ public class Metadatable<T extends Object> extends ArrayList<Metadata<T>>{
         return matches;
     }
 
-    private List<Metadata<T>> getByID(final String property) throws NoMetadataSetException {
-        final List<Metadata<T>> matches = new ArrayList<Metadata<T>>(0);
-        for (Metadata<T> data : this) {
+    private List<Metadata> getByID(final String property) throws NoMetadataSetException {
+        final List<Metadata> matches = new ArrayList<Metadata>(0);
+        for (Metadata data : this) {
             if (data.equals(property)) matches.add(data);
         }
         if (matches.isEmpty()) throw new NoMetadataSetException(property);
@@ -52,7 +51,7 @@ public class Metadatable<T extends Object> extends ArrayList<Metadata<T>>{
      * Remove a {@link Metadata} with a matching property from this entity.
      */
     public void remove(final String property) {
-        for (Metadata<T> data : this) {
+        for (Metadata data : this) {
             if (data.equals(property)) remove(data);
         }
     }
