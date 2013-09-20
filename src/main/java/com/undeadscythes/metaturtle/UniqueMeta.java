@@ -32,6 +32,15 @@ public abstract class UniqueMeta<T extends Object> extends Metadatable<T> {
     }
 
     /**
+     * Generate a {@link UID} from the given {@link String}.
+     *
+     * @see UniqueMeta#UniqueMeta(MetaType, UID) UniqueMeta(MetaType, UID)
+     */
+    public UniqueMeta(final MetaType type, final String string) {
+        this(type, new UID(string));
+    }
+
+    /**
      * Provide a {@link UID} and set the {@link MetaType} to
      * {@link Turtle#DEFAULT DEFAULT}.
      *
