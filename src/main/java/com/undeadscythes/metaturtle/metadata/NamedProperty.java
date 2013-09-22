@@ -4,7 +4,7 @@ package com.undeadscythes.metaturtle.metadata;
  * @author UndeadScythes
  */
 public class NamedProperty implements Property {
-    private String name;
+    private final String name;
 
     /**
      * Build a {@link Property} using a {@link String}.
