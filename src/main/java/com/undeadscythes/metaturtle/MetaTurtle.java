@@ -1,6 +1,8 @@
 package com.undeadscythes.metaturtle;
 
 import com.undeadscythes.metaturtle.exception.*;
+import com.undeadscythes.metaturtle.unique.*;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -16,7 +18,7 @@ public abstract class MetaTurtle extends UniqueMeta {
      * Set this instance as a {@link Turtle#ROOT ROOT} with a specific
      * {@link UID}.
      */
-    public MetaTurtle(final UID uid) {
+    protected MetaTurtle(final UID uid) {
         super(Turtle.ROOT, uid);
     }
 
@@ -26,7 +28,7 @@ public abstract class MetaTurtle extends UniqueMeta {
      *
      * @see #MetaTurtle(UID) MetaTurtle(UID)
      */
-    public MetaTurtle() {
+    protected MetaTurtle() {
         this(new UID());
     }
 
@@ -64,8 +66,33 @@ public abstract class MetaTurtle extends UniqueMeta {
      * Get a full set of {@link UniqueMeta}s of a particular {@link MetaType}.
      */
     public Collection<UniqueMeta> getUniqueMeta(final MetaType type) {
+        if (data.get(type) == null) return new ArrayList<UniqueMeta>(0);
         final Collection<UniqueMeta> list = data.get(type).values();
         if (list == null) return new ArrayList<UniqueMeta>(0);
         return list;
     }
+
+    /**
+     * Get a mutable list of every {@link UniqueMeta} this {@link MetaTurtle}
+     * holds.
+     */
+    public List<UniqueMeta> getUniqueMeta() {
+        final List<UniqueMeta> list = new ArrayList<UniqueMeta>(0);
+        for (Map<UID, UniqueMeta> map : data.values()) {
+            for (UniqueMeta meta : map.values()) {
+                list.add(meta);
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Load data from a file.
+     */
+    public abstract void load(final String path) throws IOException;
+
+    /**
+     * Save this data to a file.
+     */
+    public abstract void save();
 }
