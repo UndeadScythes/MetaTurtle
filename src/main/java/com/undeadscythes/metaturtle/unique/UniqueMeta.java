@@ -1,4 +1,6 @@
-package com.undeadscythes.metaturtle;
+package com.undeadscythes.metaturtle.unique;
+
+import com.undeadscythes.metaturtle.*;
 
 /**
  * A {@link UniqueMeta} is essentially just a {@link Metadatable} that requires

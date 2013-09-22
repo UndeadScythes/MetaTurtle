@@ -1,4 +1,4 @@
-package com.undeadscythes.metaturtle;
+package com.undeadscythes.metaturtle.unique;
 
 /**
  * A unique identifier, the term unique being used in its loosest sense.
