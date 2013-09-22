@@ -8,6 +8,9 @@ package com.undeadscythes.metaturtle.unique;
 public class UID {
     private static int nextUID = 1;
 
+    /**
+     * The {@link String} value of this {@link UID}.
+     */
     protected final String value;
 
     /**
@@ -27,7 +30,7 @@ public class UID {
 
     @Override
     public boolean equals(final Object obj) {
-        return obj != null && obj instanceof UID && ((UID)obj).value.equals(value);
+        return obj instanceof UID && ((UID)obj).value.equals(value);
     }
 
     @Override
