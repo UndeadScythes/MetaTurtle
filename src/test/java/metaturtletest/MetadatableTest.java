@@ -1,5 +1,6 @@
 package metaturtletest;
 
+import com.undeadscythes.metaturtle.unique.UID;
 import com.undeadscythes.metaturtle.*;
 import com.undeadscythes.metaturtle.exception.*;
 import metaturtletest.implementation.*;
@@ -36,20 +37,22 @@ public class MetadatableTest {
     }
 
     @Test
-    public void testMetadatableGetData() {
-        try {
-            assertEquals("getData()", "JPEG", (new Animal().getData("image.format").get(0).getValue()));
-        } catch (NoMetadataSetException ex) {
-            fail("getData()");
-        }
+    public void testMetadatableGetFirstFromPath() {
+        assertEquals("getFirstFromPath()", "JPEG", new Animal().getFirstFromPath("image.format").getValue());
     }
 
     @Test
-    public void testMetadatableGetByID() {
-        try {
-            assertEquals("getByID()", "Fred", (new Animal().getData("name").get(0).getValue()));
-        } catch (NoMetadataSetException ex) {
-            fail("getByID()");
-        }
+    public void testMetadatableGetListFromPath() {
+        assertEquals("getListFromPath()", "JPEG", new Animal().getListFromPath("image.format").get(0).getValue());
+    }
+
+    @Test
+    public void testMetadatableGetFirst() {
+        assertEquals("getFirst()", "Fred", new Animal().getFirst("name").getValue());
+    }
+
+    @Test
+    public void testMetadatableGetList() {
+        assertEquals("getFirst()", "Fred", new Animal().getList("name").get(0).getValue());
     }
 }
