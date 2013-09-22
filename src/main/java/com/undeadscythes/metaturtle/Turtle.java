@@ -1,5 +1,7 @@
 package com.undeadscythes.metaturtle;
 
+import com.undeadscythes.metaturtle.unique.*;
+
 /**
  * {@link Turtle} is an implementation of {@link MetaType} that provides a
  * {@link Turtle#ROOT} element.

@@ -1,6 +1,6 @@
 package metaturtletest.implementation;
 
-import com.undeadscythes.metaturtle.*;
+import com.undeadscythes.metaturtle.metadata.*;
 
 /**
  * @author UndeadScythes

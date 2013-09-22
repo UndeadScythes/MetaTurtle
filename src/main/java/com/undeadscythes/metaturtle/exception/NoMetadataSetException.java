@@ -2,7 +2,7 @@ package com.undeadscythes.metaturtle.exception;
 
 /**
  * Thrown when a request has been issued to fetch a
- * {@link com.undeadscythes.metaturtle.Metadata} located at a given path.
+ * {@link com.undeadscythes.metaturtle.metadata.Metadata} located at a given path.
  *
  * @author UndeadScythes
  */
@@ -11,7 +11,7 @@ public class NoMetadataSetException extends RuntimeException {
 
     /**
      * Provide the path at which no
-     * {@link com.undeadscythes.metaturtle.Metadata} was set.
+     * {@link com.undeadscythes.metaturtle.metadata.Metadata} was set.
      */
     public NoMetadataSetException(final String path) {
         super("No metadata has been set on the path '" + path + "'.");

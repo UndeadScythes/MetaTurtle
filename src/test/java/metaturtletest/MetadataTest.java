@@ -1,6 +1,6 @@
 package metaturtletest;
 
-import com.undeadscythes.metaturtle.*;
+import com.undeadscythes.metaturtle.metadata.*;
 import static org.junit.Assert.*;
 import org.junit.*;
 

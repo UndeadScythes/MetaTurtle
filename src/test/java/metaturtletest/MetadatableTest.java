@@ -1,8 +1,6 @@
 package metaturtletest;
 
-import com.undeadscythes.metaturtle.unique.UID;
-import com.undeadscythes.metaturtle.*;
-import com.undeadscythes.metaturtle.exception.*;
+import com.undeadscythes.metaturtle.unique.*;
 import metaturtletest.implementation.*;
 import static org.junit.Assert.*;
 import org.junit.*;

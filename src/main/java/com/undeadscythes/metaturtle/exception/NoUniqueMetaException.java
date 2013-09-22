@@ -1,6 +1,6 @@
 package com.undeadscythes.metaturtle.exception;
 
-import com.undeadscythes.metaturtle.*;
+import com.undeadscythes.metaturtle.unique.*;
 
 /**
  * Thrown when a request is issued for a particular {@link UniqueMeta} but no
