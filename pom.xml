@@ -6,8 +6,17 @@
 
   <groupId>com.undeadscythes</groupId>
   <artifactId>MetaTurtle</artifactId>
-  <version>2.0.0-Alpha</version>
+  <version>2.0.1-Alpha</version>
   <packaging>jar</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+      <type>jar</type>
+    </dependency>
+  </dependencies>
   <properties>
     <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
     <dev.build.timestamp>${maven.build.timestamp}</dev.build.timestamp>
@@ -40,6 +49,7 @@
 	  <execution>
 	    <phase>process-sources</phase>
 	    <goals>
+	      <goal>display-plugin-updates</goal>
 	      <goal>display-dependency-updates</goal>
 	    </goals>
 	  </execution>
@@ -105,13 +115,4 @@ many situations.</description>
   <prerequisites>
     <maven>2.2.1</maven>
   </prerequisites>
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-            <type>jar</type>
-        </dependency>
-    </dependencies>
 </project>
