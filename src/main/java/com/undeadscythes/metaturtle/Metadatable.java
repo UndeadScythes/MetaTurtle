@@ -20,6 +20,14 @@ public class Metadatable extends ArrayList<Metadata>{
     }
 
     /**
+     * Default constructor sets the initial capacity of the super
+     * {@link ArrayList} to zero.
+     */
+    public Metadatable() {
+        super(0);
+    }
+
+    /**
      * Get a list of {@link Metadata}s contained in the given path.
      *
      * @param path A {@link String} of the form "a.b.c", where each element is
