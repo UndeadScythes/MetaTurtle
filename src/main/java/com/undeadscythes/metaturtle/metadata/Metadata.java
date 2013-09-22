@@ -1,4 +1,6 @@
-package com.undeadscythes.metaturtle;
+package com.undeadscythes.metaturtle.metadata;
+
+import com.undeadscythes.metaturtle.*;
 
 /**
  * A single {@link Metadata} consists of a {@link Property} and some
@@ -55,7 +57,7 @@ public class Metadata extends Metadatable {
      * {@link Metadata} represents.
      */
     public String getProperty() {
-        return property.toString();
+        return property.getString();
     }
 
     /**

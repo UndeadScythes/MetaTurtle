@@ -1,7 +1,8 @@
-package com.undeadscythes.metaturtle;
+package com.undeadscythes.metaturtle.metadata;
 
 /**
- * An attribute of the {@link Metadata} of a {@link Metadatable}.
+ * An attribute of the {@link Metadata} of a
+ * {@link com.undeadscythes.metaturtle.Metadatable}.
  *
  * @author UndeadScythes
  */
