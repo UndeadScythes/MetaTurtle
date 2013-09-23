@@ -1,4 +1,4 @@
-# MetaTurtle - 2.0.1-Alpha #
+# MetaTurtle - Alpha-2.1-SNAPSHOT #
 
 As the saying goes - 'Its turtles all the way down'. This time
 the turtles refer to data. Data with data. Data with data with data... This
@@ -12,4 +12,4 @@ MetaTurtle source code is released under the CC BY-NC-SA 2.0 UK license.
 A copy of this licence is located in the file named LICENCE.lic, if this file is
 not present the text can be found [here](http://creativecommons.org/licenses/by-nc-sa/2.0/uk/legalcode).
 
-Last edited on 2013-09-22.
+Last edited on 2013-09-23.
