@@ -1,4 +1,4 @@
-# MetaTurtle - Alpha-2.1-SNAPSHOT #
+# MetaTurtle - Alpha-2.1 #
 
 As the saying goes - 'Its turtles all the way down'. This time
 the turtles refer to data. Data with data. Data with data with data... This
