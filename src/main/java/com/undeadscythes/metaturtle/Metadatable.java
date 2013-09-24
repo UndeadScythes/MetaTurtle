@@ -104,8 +104,11 @@ public class Metadatable extends ArrayList<Metadata>{
      * Remove a {@link Metadata} with a matching property from this entity.
      */
     public void remove(final String property) {
-        for (Metadata data : this) {
-            if (data.equals(property)) remove(data);
+        for(final Iterator<Metadata> i = iterator(); i.hasNext();) {
+            if (i.next().equals(property)) {
+                i.remove();
+                break;
+            }
         }
     }
 }
