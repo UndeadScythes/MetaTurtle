@@ -10,11 +10,11 @@ import org.junit.*;
 public class MetadataTest {
     @Test
     public void testMetadataEquals() {
-        assertTrue("equals()", new Metadata("test", "").equals("test"));
+        assertTrue(new Metadata("test", "").equals("test"));
     }
 
     @Test
     public void testMetadataSetContent() {
-        assertEquals("setContent()", "data", new Metadata("test", "data").setValue(""));
+        assertEquals("data", new Metadata("test", "data").setValue(""));
     }
 }

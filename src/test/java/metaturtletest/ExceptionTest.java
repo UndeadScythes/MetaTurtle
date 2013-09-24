@@ -22,7 +22,7 @@ public class ExceptionTest {
         try {
             throw UNIQUE;
         } catch (NoUniqueMetaException ex) {
-            assertTrue("getMessage()", ex.getMessage().endsWith("test."));
+            assertTrue(ex.getMessage().endsWith("test."));
         }
     }
 
@@ -36,7 +36,7 @@ public class ExceptionTest {
         try {
             throw METADATA;
         } catch (NoMetadataSetException ex) {
-            assertTrue("getMessage()", ex.getMessage().endsWith("test.fail'."));
+            assertTrue(ex.getMessage().endsWith("test.fail'."));
         }
     }
 }
