@@ -1,6 +1,6 @@
 package com.undeadscythes.metaturtle.metadata;
 
-import com.undeadscythes.metaturtle.*;
+import com.undeadscythes.metaturtle.Metadatable;
 
 /**
  * A single {@link Metadata} consists of a {@link Property} and some
@@ -49,6 +49,16 @@ public class Metadata extends Metadatable {
      * @return True if this {@link Metadata} has the specified {@link Property}
      */
     public boolean equals(final String property) {
+        return this.property.equals(property);
+    }
+
+    /**
+     * Override for {@link Object#equals} to provide a method of testing this
+     * {@link Property}.
+     *
+     * @return True if this {@link Metadata} has the specified {@link Property}
+     */
+    public boolean equals(final Property property) {
         return this.property.equals(property);
     }
 
