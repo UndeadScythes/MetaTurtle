@@ -6,7 +6,7 @@ package com.undeadscythes.metaturtle.exception;
  *
  * @author UndeadScythes
  */
-public class NoMetadataSetException extends RuntimeException {
+public class NoMetadataSetException extends Exception {
     private static final long serialVersionUID = 1L;
 
     /**

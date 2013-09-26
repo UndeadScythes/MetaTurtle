@@ -33,19 +33,14 @@ public class Metadatable extends ArrayList<Metadata>{
      * @param path A {@link String} of the form "a.b.c", where each element is
      * the {@link Metadata#property property} of the desired sub-meta.
      */
-    public List<Metadata> getListFromPath(final String path) {
+    public List<Metadata> getListFromPath(final String path) throws NoMetadataSetException {
         final List<Metadata> matches = new ArrayList<Metadata>(0);
         if (!path.contains(".")) return getList(path);
         final String[] pathSplit = path.split("\\.");
         final String head = pathSplit[0];
-        try {
-            for (Metadata data : getList(head)) {
-                try {
-                    matches.addAll(data.getList(path.replace(head + ".", "")));
-                } catch (NoMetadataSetException ex) {}
-            }
-        } catch (NoMetadataSetException ex) {}
-        if (matches.isEmpty()) throw new NoMetadataSetException(path);
+        for (Metadata data : getList(head)) {
+            matches.addAll(data.getList(path.replace(head + ".", "")));
+        }
         return matches;
     }
 
@@ -60,7 +55,6 @@ public class Metadatable extends ArrayList<Metadata>{
                 matches.add(data);
             }
         }
-        if (matches.isEmpty()) throw new NoMetadataSetException(string);
         return matches;
     }
 
@@ -72,7 +66,6 @@ public class Metadatable extends ArrayList<Metadata>{
         for (Metadata data : this) {
             if (data.equals(property)) matches.add(data);
         }
-        if (matches.isEmpty()) throw new NoMetadataSetException(property.getString());
         return matches;
     }
 
@@ -80,35 +73,43 @@ public class Metadatable extends ArrayList<Metadata>{
      * Get the first element of the list returned by
      * {@link #getListFromPath(String) getListFromPath(String)}.
      */
-    public Metadata getFirstFromPath(final String path) {
-        return getListFromPath(path).get(0);
+    public Metadata getFirstFromPath(final String path) throws NoMetadataSetException {
+        final List<Metadata> matches = getListFromPath(path);
+        if (matches.isEmpty()) throw new NoMetadataSetException(path);
+        return matches.get(0);
     }
 
     /**
      * Get the first element of the list returned by
      * {@link #getList(String) getList(String)}.
      */
-    public Metadata getFirst(final String string) {
-        return getList(string).get(0);
+    public Metadata getFirst(final String string) throws NoMetadataSetException {
+        final List<Metadata> matches = getList(string);
+        if (matches.isEmpty()) throw new NoMetadataSetException(string);
+        return matches.get(0);
     }
 
     /**
      * Get the first element of the list returned by
      * {@link #getList(Property) getList(Property)}.
      */
-    public Metadata getFirst(final Property property) {
-        return getList(property).get(0);
+    public Metadata getFirst(final Property property) throws NoMetadataSetException {
+        final List<Metadata> matches = getList(property);
+        if (matches.isEmpty()) throw new NoMetadataSetException(property.getString());
+        return matches.get(0);
     }
 
     /**
      * Remove a {@link Metadata} with a matching property from this entity.
      */
-    public void remove(final String property) {
+    public Metadata remove(final String property) throws NoMetadataSetException {
         for(final Iterator<Metadata> i = iterator(); i.hasNext();) {
-            if (i.next().equals(property)) {
+            final Metadata data = i.next();
+            if (data.equals(property)) {
                 i.remove();
-                break;
+                return data;
             }
         }
+        throw new NoMetadataSetException(property);
     }
 }
