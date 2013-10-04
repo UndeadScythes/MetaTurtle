@@ -1,6 +1,6 @@
 package metaturtletest.implementation;
 
-import com.undeadscythes.metaturtle.metadata.*;
+import com.undeadscythes.metaturtle.metadata.Metadata;
 
 /**
  * @author UndeadScythes
@@ -9,8 +9,8 @@ import com.undeadscythes.metaturtle.metadata.*;
 public class Image extends Metadata {
     public Image() {
         super("image", "");
-        add(new Metadata("format", "JPEG"));
-        add(new Metadata("dimensions", "200x300"));
-        add(new Metadata("filename", "bird.jpg"));
+        add(new Fact("format", "JPEG"));
+        add(new Fact("dimensions", "200x300"));
+        add(new Fact("filename", "bird.jpg"));
     }
 }

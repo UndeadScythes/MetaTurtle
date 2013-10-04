@@ -1,8 +1,9 @@
 package metaturtletest;
 
-import com.undeadscythes.metaturtle.metadata.*;
+import com.undeadscythes.metaturtle.metadata.NamedProperty;
+import metaturtletest.implementation.Fact;
 import static org.junit.Assert.*;
-import org.junit.*;
+import org.junit.Test;
 
 /**
  * @author UndeadScythes
@@ -10,11 +11,19 @@ import org.junit.*;
 public class MetadataTest {
     @Test
     public void testMetadataEquals() {
-        assertTrue(new Metadata("test", "").equals("test"));
+        assertTrue(new Fact("test", "").isProperty("test"));
+        assertTrue(new Fact("test", "").isProperty(new NamedProperty("test")));
     }
 
     @Test
     public void testMetadataSetContent() {
-        assertEquals("data", new Metadata("test", "data").setValue(""));
+        assertEquals("data", new Fact("test", "data").setValue(""));
+    }
+
+    @Test
+    public void testMetadataGetters() {
+        assertEquals("data", new Fact("test", "data").getValue());
+        assertTrue(new Fact("test", "data").getProperty().equals("test"));
+        assertEquals(new NamedProperty("test"), new Fact("test", "data").getProperty());
     }
 }

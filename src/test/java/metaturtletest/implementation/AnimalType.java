@@ -1,6 +1,6 @@
 package metaturtletest.implementation;
 
-import com.undeadscythes.metaturtle.unique.*;
+import com.undeadscythes.metaturtle.unique.MetaType;
 
 /**
  * @author UndeadScythes

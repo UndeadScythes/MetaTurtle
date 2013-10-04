@@ -1,7 +1,8 @@
 package metaturtletest.implementation;
 
-import com.undeadscythes.metaturtle.metadata.*;
-import com.undeadscythes.metaturtle.unique.*;
+import com.undeadscythes.metaturtle.unique.UID;
+import com.undeadscythes.metaturtle.unique.UniqueMeta;
+import metaturtletest.implementation.Taxonomy.Level;
 
 /**
  * @author UndeadScythes
@@ -11,7 +12,8 @@ public class Animal extends UniqueMeta {
     public Animal() {
         super(AnimalType.BIRD, new UID("7"));
         add(new Image());
-        add(new Metadata("name", "Fred"));
-        add(new Metadata("color", "green"));
+        add(new Fact("name", "Fred"));
+        add(new Fact("color", "green"));
+        add(new Fact(Level.SPECIES.getTaxonomy(), "Flappity"));
     }
 }

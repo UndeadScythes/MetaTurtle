@@ -1,10 +1,11 @@
 package metaturtletest;
 
-import com.undeadscythes.metaturtle.exception.*;
-import com.undeadscythes.metaturtle.unique.*;
-import metaturtletest.implementation.*;
+import com.undeadscythes.metaturtle.exception.NoUniqueMetaException;
+import com.undeadscythes.metaturtle.unique.UID;
+import metaturtletest.implementation.AnimalType;
+import metaturtletest.implementation.Bestiary;
 import static org.junit.Assert.*;
-import org.junit.*;
+import org.junit.Test;
 
 /**
  * @author UndeadScythes
@@ -31,5 +32,15 @@ public class MetaTurtleTest {
         } catch (NoUniqueMetaException ex) {
             fail();
         }
+    }
+
+    @Test
+    public void testMetaTurtleGetAll() {
+        assertEquals(1, new Bestiary().getUniqueMeta().size());
+    }
+
+    @Test
+    public void testMetaTurtleGetMap() {
+        assertEquals(1, new Bestiary().getMap(AnimalType.BIRD).size());
     }
 }

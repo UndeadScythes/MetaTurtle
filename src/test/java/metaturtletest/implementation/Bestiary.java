@@ -1,7 +1,7 @@
 package metaturtletest.implementation;
 
-import com.undeadscythes.metaturtle.*;
-import java.io.*;
+import com.undeadscythes.metaturtle.MetaTurtle;
+import java.io.IOException;
 
 /**
  * @author UndeadScythes
