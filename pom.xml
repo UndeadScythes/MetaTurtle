@@ -6,13 +6,20 @@
 
   <groupId>com.undeadscythes</groupId>
   <artifactId>MetaTurtle</artifactId>
-  <version>Alpha-2.2-SNAPSHOT</version>
+  <version>Beta-1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
+      <scope>test</scope>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.1</version>
       <scope>test</scope>
       <type>jar</type>
     </dependency>
@@ -80,12 +87,12 @@
     </plugins>
   </build>
 
-  <name>MetaTurtle</name>
+  <name>${project.artifactId}</name>
   <description>As the saying goes - 'Its turtles all the way down'. This time
 the turtles refer to data. Data with data. Data with data with data... This
 project provides a recursive metadata structure that can be tailored to suit
 many situations.</description>
-  <url>https://github.com/UndeadScythes/MetaTurtle</url>
+  <url>https://github.com/UndeadScythes/${project.artifactId}</url>
   <inceptionYear>2013</inceptionYear>
   <licenses>
     <license>
