@@ -5,28 +5,34 @@ package com.undeadscythes.metaturtle.metadata;
  *
  * @author UndeadScythes
  */
-public class NamedProperty implements Property {
+public class NamedProperty extends Property {
     private final String name;
 
     /**
      * Build a {@link Property} using a {@link String}.
      */
     public NamedProperty(final String name) {
-        this.name = name;
+        if (name == null) {
+            this.name = "";
+        } else {
+            this.name = name;
+        }
     }
 
     @Override
-    public boolean equals(final String string) {
-        return name.equals(string);
+    protected boolean propertyEquals(final Object obj) {
+        if (obj instanceof String) return ((String)obj).equals(name);
+        if (obj instanceof Property) return ((Property)obj).toString().equals(name);
+        return false;
     }
 
     @Override
-    public boolean equals(final Property property) {
-        return name.equals(property.getString());
+    protected int propertyHash() {
+        return 469 + name.hashCode();
     }
 
     @Override
-    public String getString() {
+    protected String propertyString() {
         return name;
     }
 }

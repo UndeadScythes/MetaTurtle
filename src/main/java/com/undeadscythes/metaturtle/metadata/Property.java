@@ -1,24 +1,43 @@
 package com.undeadscythes.metaturtle.metadata;
 
+import com.undeadscythes.metaturtle.Metadatable;
+
 /**
- * An attribute of the {@link Metadata} of a
- * {@link com.undeadscythes.metaturtle.Metadatable}.
+ * An attribute of the {@link Metadata} of a {@link Metadatable}.
  *
  * @author UndeadScythes
  */
-public interface Property {
+public abstract class Property {
     /**
-     * Check if this {@link Property} is equal to a given {@link String}.
+     * It is advised that this method supports comparisons with
+     * {@link String Strings}.
+     *
+     * @see Object#equals(Object)
      */
-    boolean equals(final String string);
+    protected abstract boolean propertyEquals(final Object obj);
 
     /**
-     * Check if this {@link Property} is equal to a given {@link Property}.
+     * @see Object#hashCode()
      */
-    boolean equals(final Property property);
+    protected abstract int propertyHash();
 
     /**
-     * Get a {@link String} form of this {@link Property}.
+     * @see Object#toString()
      */
-    String getString();
+    protected abstract String propertyString();
+
+    @Override
+    public String toString() {
+        return propertyString();
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        return propertyEquals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return propertyHash();
+    }
 }
