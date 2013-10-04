@@ -1,6 +1,7 @@
 package com.undeadscythes.metaturtle.exception;
 
-import com.undeadscythes.metaturtle.unique.*;
+import com.undeadscythes.metaturtle.unique.UID;
+import com.undeadscythes.metaturtle.unique.UniqueMeta;
 
 /**
  * Thrown when a request is issued for a particular {@link UniqueMeta} but no
@@ -15,6 +16,13 @@ public class NoUniqueMetaException extends Exception {
      * Provide the {@link UID} of the non-existent {@link UniqueMeta}.
      */
     public NoUniqueMetaException(final UID uid) {
-        super("Cannot find a unique meta with id " + uid + ".");
+        super("Cannot find a UniqueMeta with UID '" + uid + "'.");
+    }
+
+    /**
+     * Provide the {@link UID} of the non-existent {@link UniqueMeta}.
+     */
+    public NoUniqueMetaException(final String uid) {
+        super("Cannot find a UniqueMeta with UID '" + uid + "'.");
     }
 }
