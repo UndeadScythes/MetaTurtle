@@ -1,8 +1,8 @@
 package com.undeadscythes.metaturtle;
 
-import com.undeadscythes.metaturtle.exception.*;
+import com.undeadscythes.metaturtle.exception.NoUniqueMetaException;
 import com.undeadscythes.metaturtle.unique.*;
-import java.io.*;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -23,7 +23,7 @@ public abstract class MetaTurtle extends UniqueMeta {
     }
 
     /**
-     * Set this instance as a {@link Turtle#ROOT} with an automatically
+     * Set this instance as a {@link Turtle#ROOT ROOT} with an automatically
      * generated {@link UID}.
      *
      * @see #MetaTurtle(UID) MetaTurtle(UID)
@@ -84,6 +84,14 @@ public abstract class MetaTurtle extends UniqueMeta {
             }
         }
         return list;
+    }
+
+    /**
+     * Get a map of {@link UID UIDs} to {@link UniqueMeta UniqueMetas} of a
+     * given type.
+     */
+    public Map<UID, UniqueMeta> getMap(final MetaType type) {
+        return data.get(type);
     }
 
     /**
