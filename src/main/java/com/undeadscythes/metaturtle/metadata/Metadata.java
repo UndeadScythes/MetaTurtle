@@ -3,12 +3,12 @@ package com.undeadscythes.metaturtle.metadata;
 import com.undeadscythes.metaturtle.Metadatable;
 
 /**
- * A single {@link Metadata} consists of a {@link Property} and some
- * {@link Metadatable} data.
+ * A single {@link Metadata} consists of a {@link Property}, a
+ * {@link String value} and some {@link Metadatable} data.
  *
  * @author UndeadScythes
  */
-public class Metadata extends Metadatable {
+public abstract class Metadata extends Metadatable {
     private static final long serialVersionUID = 1L;
 
     private final Property property;
@@ -18,8 +18,7 @@ public class Metadata extends Metadatable {
      * Create a new {@link Metadata} item with a given {@link Property}
      * and value.
      */
-    public Metadata(final Property property, final String value) {
-        super(0);
+    protected Metadata(final Property property, final String value) {
         this.property = property;
         this.value = value;
     }
@@ -30,7 +29,7 @@ public class Metadata extends Metadatable {
      *
      * @see #Metadata(Property, String)  Metadata(Property, String)
      */
-    public Metadata(final String property, final String value) {
+    protected Metadata(final String property, final String value) {
         this(new NamedProperty(property), value);
     }
 
@@ -43,37 +42,33 @@ public class Metadata extends Metadatable {
     }
 
     /**
-     * Override for {@link Object#equals} to provide a method of testing this
-     * {@link Property}.
-     *
-     * @return True if this {@link Metadata} has the specified {@link Property}
-     */
-    public boolean equals(final String property) {
-        return this.property.equals(property);
-    }
-
-    /**
-     * Override for {@link Object#equals} to provide a method of testing this
-     * {@link Property}.
-     *
-     * @return True if this {@link Metadata} has the specified {@link Property}
-     */
-    public boolean equals(final Property property) {
-        return this.property.equals(property);
-    }
-
-    /**
      * Get a {@link String} representation of the {@link Property} this
      * {@link Metadata} represents.
      */
-    public String getProperty() {
-        return property.getString();
+    public Property getProperty() {
+        return property;
     }
 
     /**
-     * Change the {@link #value value} of this {@link Metadata}.
+     * Check if this {@link Metadata} represents the given {@link Property}.
+     */
+    public boolean isProperty(final Property property) {
+        return this.property.equals(property);
+    }
+
+    /**
+     * Convenience method for checking the representation {@link Property}.
      *
-     * @return Old {@link #value value}
+     * @see #isProperty(Property) isProperty(Property)
+     */
+    public boolean isProperty(final String string) {
+        return isProperty(new NamedProperty(string));
+    }
+
+    /**
+     * Change the value of this {@link Metadata}.
+     *
+     * @return Old value
      */
     public String setValue(final String value) {
         final String oldValue = this.value;

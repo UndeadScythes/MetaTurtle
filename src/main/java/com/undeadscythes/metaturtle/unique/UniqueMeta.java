@@ -1,6 +1,7 @@
 package com.undeadscythes.metaturtle.unique;
 
-import com.undeadscythes.metaturtle.*;
+import com.undeadscythes.metaturtle.Metadatable;
+import com.undeadscythes.metaturtle.Turtle;
 
 /**
  * A {@link UniqueMeta} is essentially just a {@link Metadatable} that requires
@@ -16,19 +17,17 @@ public abstract class UniqueMeta extends Metadatable {
     /**
      * Specify the type and UID explicitly.
      */
-    public UniqueMeta(final MetaType type, final UID uid) {
-        super(0);
+    protected UniqueMeta(final MetaType type, final UID uid) {
         this.uid = uid;
         this.type = type;
     }
 
     /**
-     * Generate a {@link UID} automatically. This value is not guaranteed to be
-     * unique.
+     * Generate a {@link UID} automatically.
      *
      * @see UniqueMeta#UniqueMeta(MetaType, UID) UniqueMeta(MetaType, UID)
      */
-    public UniqueMeta(final MetaType type) {
+    protected UniqueMeta(final MetaType type) {
         this(type, new UID());
     }
 
@@ -37,7 +36,7 @@ public abstract class UniqueMeta extends Metadatable {
      *
      * @see UniqueMeta#UniqueMeta(MetaType, UID) UniqueMeta(MetaType, UID)
      */
-    public UniqueMeta(final MetaType type, final String string) {
+    protected UniqueMeta(final MetaType type, final String string) {
         this(type, new UID(string));
     }
 
@@ -47,7 +46,7 @@ public abstract class UniqueMeta extends Metadatable {
      *
      * @see UniqueMeta#UniqueMeta(MetaType, UID) UniqueMeta(MetaType, UID)
      */
-    public UniqueMeta(final UID uid) {
+    protected UniqueMeta(final UID uid) {
         this(Turtle.DEFAULT, uid);
     }
 
@@ -57,7 +56,7 @@ public abstract class UniqueMeta extends Metadatable {
      *
      * @see UniqueMeta#UniqueMeta(MetaType, UID) UniqueMeta(MetaType, UID)
      */
-    public UniqueMeta(final String value) {
+    protected UniqueMeta(final String value) {
         this(Turtle.DEFAULT, new UID(value));
     }
 
